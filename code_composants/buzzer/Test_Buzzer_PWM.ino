@@ -1,5 +1,3 @@
-//Code written by Samuel.
-
 int buzzerPin = 3; //Define buzzerPin
 
 void setup() {
