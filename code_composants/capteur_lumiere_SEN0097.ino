@@ -1,3 +1,5 @@
+// Fonctionne, juste installer la bibliotheque BH1750
+
 /*
 
 Example of BH1750 library usage.
