@@ -1,4 +1,4 @@
-// Affichage OLED + température + ventilateur
+// Affichage OLED + température + ventilateur + qualité_air
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -8,6 +8,7 @@
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
+
 // Création de l’objet écran (I2C)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
@@ -16,8 +17,9 @@ int temp_id = 26;
 int OLED_SCL_id = 27;
 int OLED_SDA_id = 33;
 int ventilateur_id = 13;
+int qualité_A0_id = 34;
 
-int seuil_temp = 20;
+int seuil_temp = 30;
 
 byte dat [5];
 
@@ -87,6 +89,10 @@ void loop () {
   Serial.print (dat [3], DEC);
   Serial.println ('C');
 
+  // Récupération données qualité air
+  int air_value = analogRead(qualité_A0_id);
+  Serial.print(air_value);
+
 
   // Affichage sur l'écran OLED
 
@@ -111,6 +117,10 @@ void loop () {
   display.print ('.');
   display.print (dat [1], DEC);
   display.println ('%');
+
+  // Affichage qualité humidité
+  display.print(air_value);
+
 
   display.display();  // Affiche le contenu
 
