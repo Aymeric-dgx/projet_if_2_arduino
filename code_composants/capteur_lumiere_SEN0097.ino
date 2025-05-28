@@ -1,24 +1,15 @@
-/*
- Sample code for the BH1750 Light sensor
- Version 0.1
- website:www.DFRobot.com
-
- Connection:
-
- VCC-5v
- GND-GND
- SCL-SCL(analog pin 5)
- SDA-SDA(analog pin 4)
- ADD-NC
- */
 #include <Wire.h> //BH1750 IIC Mode
 #include <math.h>
+
 int BH1750address = 0x23; //setting i2c address
+
+int lumiere_SDA_id = 21;
+int lumiere_SCL_id = 18;
 
 byte buff[2];
 void setup()
 {
-  Wire.begin();
+  Wire.begin(lumiere_SDA_id, lumiere_SCL_id);
   Serial.begin(57600);//init Serail band rate
 }
 
