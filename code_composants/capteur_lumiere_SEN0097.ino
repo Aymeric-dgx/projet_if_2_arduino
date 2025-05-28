@@ -1,52 +1,60 @@
-// Fonctionne, juste installer la bibliotheque BH1750
-
 /*
+ Sample code for the BH1750 Light sensor
+ Version 0.1
+ website:www.DFRobot.com
 
-Example of BH1750 library usage.
+ Connection:
 
-This example initialises the BH1750 object using the default high resolution
-continuous mode and then makes a light level reading every second.
+ VCC-5v
+ GND-GND
+ SCL-SCL(analog pin 5)
+ SDA-SDA(analog pin 4)
+ ADD-NC
+ */
+#include <Wire.h> //BH1750 IIC Mode
+#include <math.h>
+int BH1750address = 0x23; //setting i2c address
 
-Connections
-
-  - VCC to 3V3 or 5V
-  - GND to GND
-  - SCL to SCL (A5 on Arduino Uno, Leonardo, etc or 21 on Mega and Due, on
-    esp8266 free selectable)
-  - SDA to SDA (A4 on Arduino Uno, Leonardo, etc or 20 on Mega and Due, on
-    esp8266 free selectable)
-  - ADD to (not connected) or GND
-
-ADD pin is used to set sensor I2C address. If it has voltage greater or equal
-to 0.7VCC voltage (e.g. you've connected it to VCC) the sensor address will be
-0x5C. In other case (if ADD voltage less than 0.7 * VCC) the sensor address
-will be 0x23 (by default).
-
-*/
-
-#include <BH1750.h>
-#include <Wire.h>
-
-BH1750 lightMeter;
-
-void setup() {
-  Serial.begin(9600);
-
-  // Initialize the I2C bus (BH1750 library doesn't do this automatically)
-  Wire.begin(); // SDA, SCL
-  // On esp8266 you can select SCL and SDA pins using Wire.begin(D4, D3);
-  // For Wemos / Lolin D1 Mini Pro and the Ambient Light shield use
-  // Wire.begin(D2, D1);
-
-  lightMeter.begin();
-
-  Serial.println(F("BH1750 Test begin"));
+byte buff[2];
+void setup()
+{
+  Wire.begin();
+  Serial.begin(57600);//init Serail band rate
 }
 
-void loop() {
-  float lux = lightMeter.readLightLevel();
-  Serial.print("Light: ");
-  Serial.print(lux);
-  Serial.println(" lx");
-  delay(1000);
+void loop()
+{
+  int i;
+  uint16_t val=0;
+  BH1750_Init(BH1750address);
+  delay(200);
+
+  if(2==BH1750_Read(BH1750address))
+  {
+    val=((buff[0]<<8)|buff[1])/1.2;
+    Serial.print(val,DEC);
+    Serial.println("[lx]");
+  }
+  delay(150);
+}
+
+int BH1750_Read(int address) //
+{
+  int i=0;
+  Wire.beginTransmission(address);
+  Wire.requestFrom(address, 2);
+  while(Wire.available()) //
+  {
+    buff[i] = Wire.read();  // receive one byte
+    i++;
+  }
+  Wire.endTransmission();
+  return i;
+}
+
+void BH1750_Init(int address)
+{
+  Wire.beginTransmission(address);
+  Wire.write(0x10);//1lx reolution 120ms
+  Wire.endTransmission();
 }
