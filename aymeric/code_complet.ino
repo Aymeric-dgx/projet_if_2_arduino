@@ -18,10 +18,12 @@ int OLED_SCL_id = 27;
 int OLED_SDA_id = 33;
 int ventilateur_id = 13;
 int qualité_A0_id = 34;
+int buzzer_id = 23;
 
 int seuil_temp = 30;
 
 byte dat [5];
+
 
 // Fonction capteur de temp
 byte read_data () {
@@ -62,10 +64,11 @@ void setup () {
   pinMode (temp_id, OUTPUT);
   pinMode(ventilateur_id, OUTPUT);
 
-  digitalWrite(ventilateur_id, HIGH);
+  digitalWrite(ventilateur_id, HIGH); // Test ventilateur
+  digitalWrite(buzzer_id, HIGH); // Test buzzer
 
   // setup OLED
-  // Initialiser I2C si tu utilises d'autres pins (optionnel)
+  // Initialiser I2C
   Wire.begin(OLED_SDA_id, OLED_SCL_id);  // SDA, SCL
 
   // Initialisation de l’écran
@@ -91,11 +94,11 @@ void loop () {
 
   // Récupération données qualité air
   int air_value = analogRead(qualité_A0_id);
-  Serial.print(air_value);
+  Serial.print("qualité air : ");
+  Serial.println(air_value);
 
 
   // Affichage sur l'écran OLED
-
   // Efface l’écran
   display.clearDisplay();
 
