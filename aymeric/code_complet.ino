@@ -1,21 +1,17 @@
 // Affichage OLED + température + ventilateur + qualité_air + vitesse du vent
 // Branches à éviter : 0, 2, 12, 15
+// Branche sans risque : GPIO 4, 5, 13, 14, 16, 17, 18, 19, 21, 22, 23, 25, 26, 27, 32, 33
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <DHT.h> 
-
-// Taille de l’écran (pour écran 128x64)
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
+#include <DHT.h>
+#include <BH1750.h>
 
 
-// Création de l’objet écran (I2C)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+// Definition des pin + seuils limites
 
 // pin_SDA = 21, pin_SCL = 22
-
 int temp_id = 26;
 int ventilateur_id = 13;
 int qualité_A0_id = 34;
@@ -27,9 +23,31 @@ int seuil_vitesse_vent = 60; //Alerte si supérieur à km/h
 int seuil_humidité = 30; // Alerte si inférieur à 30%
 int seuil_luminosité = 1000; // Seuil de luminosité pour passer de joir à nuit
 
+volatile int nb_tours = 0; // Variable globale
+unsigned long dernier_calcul = 0; 
+float vitesse_vent = 0;
+float diamètre_anémomètre = 0.5; // En mètres
+
+
 // Création de l'objet dht pour la température
 #define DHTTYPE DHT11
 DHT dht(temp_id, DHTTYPE);
+
+
+// Création de l’objet écran 
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+
+// Création de l'objet pour le luxmetre
+BH1750 lightMeter;
+
+
+// Fonction "globale" qui va incrémenter le nb_tours à chaque fois que l'aimant passe
+void IRAM_ATTR onAimantPasse() {
+  nb_tours++;
+}
 
 
 // Loops principales
@@ -47,25 +65,38 @@ void setup () {
     Serial.println(F("Écran OLED non détecté"));
     while (true); // Arrêt
   }
-
   // Initialisation du capteur de temp
   dht.begin();
+  // Initialisation du luxmetre
+  lightMeter.begin(BH1750::CONTINUOUS_HIGH_RES_MODE);
+
+  // Pour le calcul de la vitesse du vent
+  attachInterrupt(digitalPinToInterrupt(capteur_magnetique_id), onAimantPasse, FALLING); // ou RISING selon ton montage
 }
 
+
+
 void loop () {
-  // Récupération/calcul des données
-  float humidté = dht.readHumidity();
+  // Récupération des données "classiques"
+  float humidité = dht.readHumidity();
   float température = dht.readTemperature();
+  float luminosité = lightMeter.readLightLevel();
   int air_value = analogRead(qualité_A0_id);
   
+  // Calcule de la vitesse du vente
+  unsigned long maintenant = millis(); 
 
-  // Récupération données qualité air
-  
-  Serial.print("qualité air : ");
-  Serial.println(air_value);
+  if (maintenant - dernier_calcul >= 5000) {
+    float tours_par_sec = nb_tours / 5.0;
+    float perimetre = diamètre_anémomètre * PI;
+    vitesse_vent = tours_par_sec * perimetre * 3.6; // m/s → km/h
 
+    nb_tours = 0;
+    dernier_calcul = maintenant;
+  }
 
   // Affichage sur l'écran OLED
+  
   // Efface l’écran
   display.clearDisplay();
 
@@ -74,13 +105,34 @@ void loop () {
   display.setTextColor(SSD1306_WHITE); // Couleur (blanc sur fond noir)
   display.setCursor(0, 0);             // Position de départ (x, y)
 
+  // Ecriture sur l'ecran OLED
+  display.print("Température : ");
+  display.print(température);
+  display.print(" °C");
 
-  // Affichage qualité humidité
-  display.print(air_value);
+  display.print("Humidité : ");
+  display.print(humidité);
+  display.print(" %");
 
+  display.print("Vitesse du vent : ");
+  display.print(vitesse_vent);
+  display.println(" km/h");
 
-  display.display();  // Affiche le contenu
+  display.print("Qualité de l'aire : ");
+  if (air_value < 400) {
+    display.println("Air pur");
+  } else if (air_value < 1000) {
+    display.println("Air moyen");
+  } else {
+    display.println("Air pollué");
+  }
 
+  display.print("Luminosité : ");
+  display.print(luminosité);
+  display.println(" lx");
+
+  // Affiche le contenu
+  display.display();  
 
   delay(2000);
 }
