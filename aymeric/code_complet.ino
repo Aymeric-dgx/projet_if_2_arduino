@@ -1,4 +1,4 @@
-// Affichage OLED + température + ventilateur + qualité_air
+// Affichage OLED + température + ventilateur + qualité_air + vitesse du vent
 // Branches à éviter : 0, 2, 12, 15
 
 #include <Wire.h>
@@ -20,13 +20,19 @@ int OLED_SDA_id = 33;
 int ventilateur_id = 13;
 int qualité_A0_id = 34;
 int buzzer_id = 23;
+int capteur_magnetique_id = 35;
 
-int seuil_temp = 30;
+int seuil_temp = 30; // Alerte si supérieur à 30°C
+int seuil_vitesse_vent = 60; //Alerte si supérieur à km/h
+int seuil_humidité = 30; // Alerte si inférieur à 30%
+int seuil_luminosité = 1000; // Seuil de luminosité pour passer de joir à nuit
 
-byte dat [5];
+
 
 
 // Fonction capteur de temp
+byte dat [5];
+
 byte read_data () {
   byte data;
   for (int i = 0; i < 8; i ++) {
@@ -59,14 +65,12 @@ void start_test () {
 
 
 
+// Loops principales
 
 void setup () {
   Serial.begin (9600);
   pinMode (temp_id, OUTPUT);
   pinMode(ventilateur_id, OUTPUT);
-
-  digitalWrite(ventilateur_id, HIGH); // Test ventilateur
-  digitalWrite(buzzer_id, HIGH); // Test buzzer
 
   // setup OLED
   // Initialiser I2C
@@ -80,7 +84,10 @@ void setup () {
 }
 
 void loop () {
-  // Récupération données température + humidité
+  // Récupération/calcul des données
+
+  
+
   start_test ();
   Serial.print ("Current humdity =");
   Serial.print (dat [0], DEC);
