@@ -1,4 +1,5 @@
 // Affichage OLED + température + ventilateur + qualité_air
+// Branches à éviter : 0, 2, 12, 15
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
