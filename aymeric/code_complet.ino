@@ -1,4 +1,3 @@
-// Affichage OLED + température + ventilateur + qualité_air + vitesse du vent
 // Branches à éviter : 0, 2, 12, 15
 // Branche sans risque : GPIO 4, 5, 13, 14, 16, 17, 18, 19, 21, 22, 23, 25, 26, 27, 32, 33
 
@@ -9,7 +8,7 @@
 #include <BH1750.h>
 
 
-// Definition des pin + seuils limites
+// Déclaration des pin + seuils limites + variables
 
 // pin_SDA = 21, pin_SCL = 22
 int temp_id = 26;
@@ -44,7 +43,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 BH1750 lightMeter;
 
 
-// Fonction "globale" qui va incrémenter le nb_tours à chaque fois que l'aimant passe
+// Fonction "globale" qui va incrémenter le nb_tours à chaque fois que l'aimant passe (à tester)
 void IRAM_ATTR onAimantPasse() {
   nb_tours++;
 }
@@ -54,6 +53,8 @@ void IRAM_ATTR onAimantPasse() {
 
 void setup () {
   Serial.begin (9600);
+
+  // Déclarion des OUTPUT et INPUT
   pinMode (temp_id, OUTPUT);
   pinMode(ventilateur_id, OUTPUT);
 
@@ -83,7 +84,7 @@ void loop () {
   float luminosité = lightMeter.readLightLevel();
   int air_value = analogRead(qualité_A0_id);
   
-  // Calcule de la vitesse du vente
+  // Calcule de la vitesse du vent
   unsigned long maintenant = millis(); 
 
   if (maintenant - dernier_calcul >= 5000) {
