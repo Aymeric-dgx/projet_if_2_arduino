@@ -13,16 +13,13 @@
 // Création de l’objet écran (I2C)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
+// pin_SDA = 21, pin_SCL = 22
 
 int temp_id = 26;
-int OLED_SCL_id = 27;
-int OLED_SDA_id = 33;
 int ventilateur_id = 13;
 int qualité_A0_id = 34;
 int buzzer_id = 23;
 int capteur_magnetique_id = 18;
-int température_SDA_id = 35;
-int température_SCL_id = 32;
 
 int seuil_temp = 30; // Alerte si supérieur à 30°C
 int seuil_vitesse_vent = 60; //Alerte si supérieur à km/h
@@ -76,8 +73,7 @@ void setup () {
 
   // setup OLED
   // Initialiser I2C
-  Wire.begin(OLED_SDA_id, OLED_SCL_id);  // SDA, SCL
-  Wire.begin(température_SDA_id, température_SCL_id); // SDA, SCL
+  Wire.begin();  // SDA, SCL
 
   // Initialisation de l’écran
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // 0x3C est l’adresse la plus fréquente
