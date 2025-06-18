@@ -1,0 +1,1700 @@
+[
+    {
+        "id": "728784ccff1604fc",
+        "type": "tab",
+        "label": "Station Météo Moderne",
+        "disabled": false,
+        "info": "Station météo connectée style Google avec alertes intelligentes et contrôles avancés"
+    },
+    {
+        "id": "72c7da0ee60884ee",
+        "type": "ui_template",
+        "z": "728784ccff1604fc",
+        "group": "c270e63cfb454440",
+        "name": "Styles CSS Modernes",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n/* Styles pour interface Google Météo avec onglets et liens stylisés */\n.nr-dashboard-theme {\n    font-family: 'Roboto', 'Arial', sans-serif;\n    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); /* Fond dégradé */\n    min-height: 100vh; /* Assure que le dégradé couvre toute la hauteur */\n}\n\n.nr-dashboard-theme md-content {\n    background: transparent !important; /* Rendre le fond du contenu transparent */\n}\n\n/* Styles pour les onglets du dashboard */\n.nr-dashboard-theme md-tabs {\n    background: rgba(255, 255, 255, 0.1) !important;\n    border-radius: 15px 15px 0 0;\n    backdrop-filter: blur(10px);\n}\n\n.nr-dashboard-theme md-tabs md-tab-item {\n    background: rgba(255, 255, 255, 0.1) !important;\n    color: white !important;\n    border-radius: 12px 12px 0 0;\n    margin: 0 5px;\n    transition: all 0.3s ease;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n}\n\n.nr-dashboard-theme md-tabs md-tab-item:hover {\n    background: rgba(255, 255, 255, 0.2) !important;\n    transform: translateY(-2px);\n}\n\n.nr-dashboard-theme md-tabs md-tab-item.md-active {\n    background: rgba(255, 255, 255, 0.25) !important;\n    box-shadow: 0 4px 15px rgba(0,0,0,0.3);\n}\n\n/* Styles pour les liens et boutons de navigation */\n.nr-dashboard-theme a, .nr-dashboard-theme button {\n    background: rgba(255, 255, 255, 0.15) !important;\n    color: white !important;\n    border-radius: 12px;\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    transition: all 0.3s ease;\n    backdrop-filter: blur(8px);\n}\n\n.nr-dashboard-theme a:hover, .nr-dashboard-theme button:hover {\n    background: rgba(255, 255, 255, 0.25) !important;\n    transform: translateY(-2px);\n    box-shadow: 0 6px 20px rgba(0,0,0,0.3);\n}\n\n/* Styles pour la barre de navigation principale */\n.nr-dashboard-theme md-toolbar {\n    background: rgba(255, 255, 255, 0.1) !important;\n    backdrop-filter: blur(15px);\n    border-bottom: 1px solid rgba(255, 255, 255, 0.2);\n}\n\n.nr-dashboard-theme md-toolbar h2 {\n    color: white !important;\n    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);\n}\n\n/* Menu hamburger et icônes */\n.nr-dashboard-theme md-icon {\n    color: white !important;\n    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));\n}\n\n/* Sidebar/menu latéral */\n.nr-dashboard-theme md-sidenav {\n    background: rgba(255, 255, 255, 0.1) !important;\n    backdrop-filter: blur(15px);\n    border-right: 1px solid rgba(255, 255, 255, 0.2);\n}\n\n.nr-dashboard-theme md-sidenav md-list-item {\n    background: rgba(255, 255, 255, 0.05) !important;\n    color: white !important;\n    border-radius: 10px;\n    margin: 5px 10px;\n    transition: all 0.3s ease;\n}\n\n.nr-dashboard-theme md-sidenav md-list-item:hover {\n    background: rgba(255, 255, 255, 0.15) !important;\n    transform: translateX(5px);\n}\n\n/* Styles pour les ui-card-panel (éléments gris) */\nui-card-panel {\n    background-color: rgba(255,255,255,0.1) !important; \n    border-radius: 15px !important;\n    backdrop-filter: blur(8px) !important;\n    border: 1px solid rgba(255, 255, 255, 0.2) !important;\n    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;\n    transition: all 0.3s ease !important;\n}\n\nui-card-panel:hover {\n    background-color: rgba(255,255,255,0.15) !important;\n    transform: translateY(-2px) !important;\n    box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;\n}\n\n.nr-dashboard-theme ui-card-panel {\n    border: none !important;\n    background-color: rgba(255,255,255,0.1) !important; \n    border-radius: 15px !important;\n    backdrop-filter: blur(8px) !important;\n}\n\n.nr-dashboard-theme ui-card-panel p.nr-dashboard {\n    color: rgba(255, 255, 255, 0.9) !important;\n    text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;\n}\n\n.nr-dashboard-theme ui-card-panel .nr-dashboard-text {\n    color: rgba(255, 255, 255, 0.9) !important;\n}\n\n.nr-dashboard-theme ui-card-panel .nr-dashboard-cardtitle {\n    color: white !important;\n    font-weight: bold !important;\n    text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;\n}\n\n/* Styles pour les menus déroulants */\n.nr-dashboard-theme md-select-menu {\n    background-color: rgba(40, 85, 165, 1) !important;\n    border-radius: 10px !important;\n    border: none !important;\n    backdrop-filter: blur(15px) !important;\n    box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;\n}\n\n.nr-dashboard-theme md-select-menu md-option {\n    background-color: transparent !important;\n    color: white !important;\n    border-radius: 8px !important;\n    margin: 2px 5px !important;\n    transition: all 0.3s ease !important;\n}\n\n.nr-dashboard-theme md-select-menu md-option:hover {\n    background-color: rgba(255, 255, 255, 0.2) !important;\n    transform: translateX(5px) !important;\n}\n\n.nr-dashboard-theme md-select-menu md-option[selected] {\n    background-color: rgba(255, 255, 255, 0.3) !important;\n    font-weight: bold !important;\n}\n\n.nr-dashboard-theme md-select-menu-container {\n    border-radius: 10px !important;\n    border: none !important;\n}\n\n/* Styles pour les inputs et selects */\n.nr-dashboard-theme input, .nr-dashboard-theme select {\n    background: rgba(40, 85, 165, 0.8) !important;\n    color: white !important;\n    border: 1px solid rgba(255, 255, 255, 0.3) !important;\n    border-radius: 10px !important;\n    backdrop-filter: blur(8px);\n}\n\n.nr-dashboard-theme input:focus, .nr-dashboard-theme select:focus {\n    background: rgba(60, 105, 185, 0.9) !important;\n    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;\n}\n\n.nr-dashboard-theme md-card {\n    background: rgba(255, 255, 255, 0.15) !important; /* Transparence pour les cartes */\n    color: white;\n    border-radius: 20px; /* Bords plus arrondis */\n    box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Ombre plus prononcée */\n    backdrop-filter: blur(8px); /* Effet de flou derrière les cartes */\n    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile */\n}\n\n.conditions-group .nr-dashboard-theme md-card {\n    background: rgba(255, 255, 255, 0.2) !important; /* Légèrement plus opaque pour les conditions */\n}\n\n.weather-display {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 20px;\n    background: rgba(255,255,255,0.1); /* Transparence */\n    border-radius: 15px; /* Bords arrondis */\n    margin: 15px 0;\n    backdrop-filter: blur(10px);\n    box-shadow: 0 4px 15px rgba(0,0,0,0.2);\n}\n\n.weather-emoji {\n    font-size: 4.5rem; /* Emoji plus grand */\n    animation: pulse 2s infinite ease-in-out; /* Animation plus douce */\n}\n\n.weather-info {\n    flex-grow: 1;\n    margin: 0 25px;\n    text-align: center;\n}\n\n.weather-temp {\n    font-size: 3.5rem;\n    font-weight: bold;\n    margin: 0;\n    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Ombre sur le texte */\n}\n\n.weather-desc {\n    font-size: 1.3rem;\n    opacity: 0.95;\n    margin: 8px 0;\n}\n\n.alert-section {\n    background: rgba(255,107,107,0.3); /* Transparence pour les alertes */\n    border-left: 5px solid #ff6b6b;\n    padding: 18px;\n    margin: 15px 0;\n    border-radius: 10px;\n    animation: alertBlink 1.8s infinite alternate; /* Animation d'alerte modifiée */\n    box-shadow: 0 2px 10px rgba(0,0,0,0.2);\n}\n\n.controls-group .nr-dashboard-theme md-card {\n    background: rgba(255, 255, 255, 0.1) !important; /* Transparence pour les contrôles */\n}\n\n.led-button {\n    margin: 10px;\n    padding: 18px 30px;\n    border-radius: 30px;\n    font-weight: bold;\n    transition: all 0.4s ease-in-out;\n    box-shadow: 0 6px 20px rgba(0,0,0,0.3);\n    color: white; /* Texte blanc pour les boutons */\n    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);\n}\n\n.led-button:hover {\n    transform: translateY(-5px) scale(1.05); /* Effet de survol plus prononcé */\n    box-shadow: 0 8px 25px rgba(0,0,0,0.4);\n}\n\n.led-canicule { background: linear-gradient(45deg, #ff6b6b, #ee5a24); }\n.led-secheresse { background: linear-gradient(45deg, #f9ca24, #f0932b); }\n.led-tempete { background: linear-gradient(45deg, #6c5ce7, #5f27cd); }\n.led-ventilateur { background: linear-gradient(45deg, #74b9ff, #0984e3); }\n\n.screen-group .nr-dashboard-theme md-card {\n    background: rgba(255, 255, 255, 0.15) !important; /* Transparence pour l'écran */\n}\n\n.history-group .nr-dashboard-theme md-card {\n    background: rgba(255, 255, 255, 0.1) !important; /* Transparence pour l'historique */\n    border-radius: 15px;\n    margin-top: 25px;\n}\n\n/* Nouvelle classe pour les graphiques - optimisation de l'espace */\n.chart-optimized {\n    width: 100% !important;\n    height: auto !important;\n    min-height: 300px !important;\n    background: rgba(255, 255, 255, 0.1) !important;\n    border-radius: 15px !important;\n    backdrop-filter: blur(8px) !important;\n    border: 1px solid rgba(255, 255, 255, 0.2) !important;\n    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;\n    margin: 10px 0 !important;\n    padding: 15px !important;\n    transition: all 0.3s ease !important;\n}\n\n.chart-optimized:hover {\n    background: rgba(255, 255, 255, 0.15) !important;\n    transform: translateY(-2px) !important;\n    box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;\n}\n\n.chart-optimized .chart-title {\n    color: white !important;\n    font-weight: bold !important;\n    text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;\n    margin-bottom: 15px !important;\n}\n\n/* Styles pour les graphiques et charts */\n.nr-dashboard-theme .chart-container {\n    background: rgba(255, 255, 255, 0.1) !important;\n    border-radius: 15px;\n    backdrop-filter: blur(8px);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n}\n\n@keyframes pulse {\n    0% { transform: scale(1); }\n    50% { transform: scale(1.08); }\n    100% { transform: scale(1); }\n}\n\n@keyframes alertBlink {\n    0%, 100% { opacity: 1; }\n    50% { opacity: 0.6; }\n}\n\n/* Responsive design */\n@media (max-width: 768px) {\n    .weather-display { flex-direction: column; text-align: center; }\n    .weather-emoji { font-size: 3.5rem; }\n    .weather-temp { font-size: 3rem; }\n    .led-button { padding: 12px 20px; }\n    \n    .nr-dashboard-theme md-tabs md-tab-item {\n        margin: 0 2px;\n        font-size: 0.9rem;\n    }\n    \n    .chart-optimized {\n        min-height: 250px !important;\n        padding: 10px !important;\n    }\n}\n</style>\n/* Corrections pour les textes en gris - À ajouter à votre CSS global */\n\n/* Forcer la couleur blanche pour tous les textes */\n.nr-dashboard-theme * {\ncolor: #ffffff !important;\n}\n\n/* Spécifiquement pour les petits textes et timestamps */\n.nr-dashboard-theme small,\n.nr-dashboard-theme .small {\ncolor: #b0b0b0 !important;\n}\n\n/* Pour les paragraphes dans les cartes */\n.nr-dashboard-theme p {\ncolor: #ffffff !important;\n}\n\n/* Pour les spans */\n.nr-dashboard-theme span {\ncolor: #ffffff !important;\n}\n\n/* Pour les divs */\n.nr-dashboard-theme div {\ncolor: #ffffff !important;\n}\n\n/* Pour les éléments Angular */\n.nr-dashboard-theme [ng-if],\n.nr-dashboard-theme [ng-repeat] {\ncolor: #ffffff !important;\n}\n\n/* Correction spécifique pour vos templates météo */\n.nr-dashboard-theme .weather-display,\n.nr-dashboard-theme .weather-display * {\ncolor: #ffffff !important;\n}\n\n.nr-dashboard-theme .weather-stats div {\ncolor: #ffffff !important;\n}\n\n.nr-dashboard-theme .alert-section,\n.nr-dashboard-theme .alert-section * {\ncolor: #ffffff !important;\n}\n\n.nr-dashboard-theme .alert-section h3 {\ncolor: #e74c3c !important;\n}\n\n/* Pour les timestamps et textes secondaires */\n.nr-dashboard-theme .timestamp,\n.nr-dashboard-theme .secondary-text {\ncolor: #cccccc !important;\n}\n\n/* Correction pour les titres dans les cartes */\n.nr-dashboard-theme h1,\n.nr-dashboard-theme h2,\n.nr-dashboard-theme h3,\n.nr-dashboard-theme h4,\n.nr-dashboard-theme h5,\n.nr-dashboard-theme h6 {\ncolor: #ffffff !important;\n}",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 160,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dadd1926f44ca739",
+        "type": "mqtt in",
+        "z": "728784ccff1604fc",
+        "name": "Temperature",
+        "topic": "station/temperature",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "80da8ab42c6145b2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 120,
+        "wires": [
+            [
+                "7aacfe21b5ac5b3d"
+            ]
+        ]
+    },
+    {
+        "id": "6f515fd9ee86915e",
+        "type": "mqtt in",
+        "z": "728784ccff1604fc",
+        "name": "Humidity",
+        "topic": "station/humidity",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "80da8ab42c6145b2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "4ec04dc7e4a9aa42"
+            ]
+        ]
+    },
+    {
+        "id": "dd7950f886c4ca25",
+        "type": "mqtt in",
+        "z": "728784ccff1604fc",
+        "name": "Light",
+        "topic": "station/light",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "80da8ab42c6145b2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "56514bc00b7b95b9"
+            ]
+        ]
+    },
+    {
+        "id": "40f165f8a0584722",
+        "type": "mqtt in",
+        "z": "728784ccff1604fc",
+        "name": "Air Quality",
+        "topic": "station/air_quality",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "80da8ab42c6145b2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 300,
+        "wires": [
+            [
+                "0cd1fb8966473e35"
+            ]
+        ]
+    },
+    {
+        "id": "e66290fa40040cec",
+        "type": "mqtt in",
+        "z": "728784ccff1604fc",
+        "name": "Wind Speed",
+        "topic": "station/wind_speed",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "80da8ab42c6145b2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "6c3d3b906931416d"
+            ]
+        ]
+    },
+    {
+        "id": "a1b30f2c3e7db332",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Analyse Conditions Météo",
+        "func": "\n// Récupération des données depuis le contexte global\nvar temp = global.get(\"current_temperature\") || 20;\nvar humidity = global.get(\"current_humidity\") || 50;\nvar light = global.get(\"current_light\") || 500;\nvar windSpeed = global.get(\"current_wind_speed\") || 0;\nvar airQuality = global.get(\"current_air_quality\") || 400;\n\n// Détermination des conditions météo\nvar weatherCondition = \"\";\nvar weatherEmoji = \"\";\nvar weatherDesc = \"\";\n\nif (temp > 30 && light > 800) {\n    weatherCondition = \"sunny\";\n    weatherEmoji = \"☀️\";\n    weatherDesc = \"Ensoleillé\";\n} else if (humidity > 80 && temp < 15) {\n    weatherCondition = \"rainy\";\n    weatherEmoji = \"🌧️\";\n    weatherDesc = \"Pluvieux\";\n} else if (temp < 5) {\n    weatherCondition = \"snowy\";\n    weatherEmoji = \"❄️\";\n    weatherDesc = \"Neigeux\";\n} else if (windSpeed > 30) {\n    weatherCondition = \"windy\";\n    weatherEmoji = \"💨\";\n    weatherDesc = \"Venteux\";\n} else if (light < 200) {\n    weatherCondition = \"cloudy\";\n    weatherEmoji = \"☁️\";\n    weatherDesc = \"Nuageux\";\n} else {\n    weatherCondition = \"partly_cloudy\";\n    weatherEmoji = \"⛅\";\n    weatherDesc = \"Partiellement nuageux\";\n}\n\n// Message de sortie pour l'affichage\nmsg.payload = {\n    condition: weatherCondition,\n    emoji: weatherEmoji,\n    description: weatherDesc,\n    temperature: temp,\n    humidity: humidity,\n    light: light,\n    windSpeed: windSpeed,\n    airQuality: airQuality,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "5c965e1e7ca8f962",
+                "9ae8c9e34bb2ac0e",
+                "11a48c0c78526811",
+                "a5f9bac4ea65bc9e",
+                "3a4abcf34afcefcf"
+            ]
+        ]
+    },
+    {
+        "id": "7aacfe21b5ac5b3d",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Process Temperature",
+        "func": "\n// Extraction de la valeur du capteur\nvar value = msg.payload.value || msg.payload;\n\n// Sauvegarde dans le contexte global\nglobal.set(\"current_temperature\", value);\n\n// Transmission pour affichage et analyse\nmsg.payload = {\n    sensor: \"temperature\",\n    value: value,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 120,
+        "wires": [
+            [
+                "a1b30f2c3e7db332",
+                "15fe88d83b6322c8",
+                "abc9115f90f3259d"
+            ]
+        ]
+    },
+    {
+        "id": "4ec04dc7e4a9aa42",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Process Humidity",
+        "func": "\n// Extraction de la valeur du capteur\nvar value = msg.payload.value || msg.payload;\n\n// Sauvegarde dans le contexte global\nglobal.set(\"current_humidity\", value);\n\n// Transmission pour affichage et analyse\nmsg.payload = {\n    sensor: \"humidity\",\n    value: value,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "a1b30f2c3e7db332",
+                "15fe88d83b6322c8",
+                "b6645fdacbfb39f4"
+            ]
+        ]
+    },
+    {
+        "id": "56514bc00b7b95b9",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Process Light",
+        "func": "\n// Extraction de la valeur du capteur\nvar value = msg.payload.value || msg.payload;\n\n// Sauvegarde dans le contexte global\nglobal.set(\"current_light\", value);\n\n// Transmission pour affichage et analyse\nmsg.payload = {\n    sensor: \"light\",\n    value: value,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 240,
+        "wires": [
+            [
+                "a1b30f2c3e7db332",
+                "15fe88d83b6322c8",
+                "129c1a1496a0dc1e"
+            ]
+        ]
+    },
+    {
+        "id": "0cd1fb8966473e35",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Process Air_Quality",
+        "func": "\n// Extraction de la valeur du capteur\nvar value = msg.payload.value || msg.payload;\n\n// Sauvegarde dans le contexte global\nglobal.set(\"current_air_quality\", value);\n\n// Transmission pour affichage et analyse\nmsg.payload = {\n    sensor: \"air_quality\",\n    value: value,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "a1b30f2c3e7db332",
+                "15fe88d83b6322c8",
+                "2f75255362bade66"
+            ]
+        ]
+    },
+    {
+        "id": "6c3d3b906931416d",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Process Wind_Speed",
+        "func": "\n// Extraction de la valeur du capteur\nvar value = msg.payload.value || msg.payload;\n\n// Sauvegarde dans le contexte global\nglobal.set(\"current_wind_speed\", value);\n\n// Transmission pour affichage et analyse\nmsg.payload = {\n    sensor: \"wind_speed\",\n    value: value,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "a1b30f2c3e7db332",
+                "15fe88d83b6322c8",
+                "aa9222c5246a20be",
+                "898f0915144a2e81"
+            ]
+        ]
+    },
+    {
+        "id": "5c965e1e7ca8f962",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Alerte Canicule",
+        "func": "\n// Récupération des valeurs actuelles\nvar temp = global.get(\"current_temperature\") || 20;\nvar humidity = global.get(\"current_humidity\") || 50;\nvar windSpeed = global.get(\"current_wind_speed\") || 0;\nvar airQuality = global.get(\"current_air_quality\") || 400;\n\nvar alertActive = false;\nvar alertMsg = null;\nvar actionMsgs = [];\n\n// Condition d'alerte: temp > 35\nif (temp > 35) {\n    alertActive = true;\n\n    alertMsg = {\n        payload: {\n            type: \"heatwave\",\n            emoji: \"🔥\",\n            message: \"CANICULE DÉTECTÉE\",\n            value: temp,\n            active: true,\n            timestamp: new Date().toISOString(),\n            priority: \"high\"\n        }\n    };\n\n    // Actions automatiques\n    actionMsgs.push({topic: \"station/control/fan\", payload: \"ON\"});\nactionMsgs.push({topic: \"station/control/led\", payload: \"HEATWAVE\"});\n}\n\n// Retour des messages\nvar outputs = [alertMsg];\nfor (var i = 0; i < 2; i++) {\n    outputs.push(actionMsgs[i] || null);\n}\n\nreturn outputs;\n",
+        "outputs": 3,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 120,
+        "wires": [
+            [
+                "62d672ffe417918d",
+                "2e24022f498d1c5b"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9ae8c9e34bb2ac0e",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Alerte Sécheresse",
+        "func": "\n// Récupération des valeurs actuelles\nvar temp = global.get(\"current_temperature\") || 20;\nvar humidity = global.get(\"current_humidity\") || 50;\nvar windSpeed = global.get(\"current_wind_speed\") || 0;\nvar airQuality = global.get(\"current_air_quality\") || 400;\n\nvar alertActive = false;\nvar alertMsg = null;\nvar actionMsgs = [];\n\n// Condition d'alerte: humidity < 30\nif (humidity < 30) {\n    alertActive = true;\n\n    alertMsg = {\n        payload: {\n            type: \"drought\",\n            emoji: \"🏜️\",\n            message: \"SÉCHERESSE DÉTECTÉE\",\n            value: humidity,\n            active: true,\n            timestamp: new Date().toISOString(),\n            priority: \"high\"\n        }\n    };\n\n    // Actions automatiques\n    actionMsgs.push({topic: \"station/control/led\", payload: \"DROUGHT\"});\n}\n\n// Retour des messages\nvar outputs = [alertMsg];\nfor (var i = 0; i < 1; i++) {\n    outputs.push(actionMsgs[i] || null);\n}\n\nreturn outputs;\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 180,
+        "wires": [
+            [
+                "62d672ffe417918d",
+                "2e24022f498d1c5b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "11a48c0c78526811",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Alerte Tempête",
+        "func": "\n// Récupération des valeurs actuelles\nvar temp = global.get(\"current_temperature\") || 20;\nvar humidity = global.get(\"current_humidity\") || 50;\nvar windSpeed = global.get(\"current_wind_speed\") || 0;\nvar airQuality = global.get(\"current_air_quality\") || 400;\n\nvar alertActive = false;\nvar alertMsg = null;\nvar actionMsgs = [];\n\n// Condition d'alerte: windSpeed > 60\nif (windSpeed > 60) {\n    alertActive = true;\n\n    alertMsg = {\n        payload: {\n            type: \"storm\",\n            emoji: \"⛈️\",\n            message: \"TEMPÊTE DÉTECTÉE\",\n            value: windSpeed,\n            active: true,\n            timestamp: new Date().toISOString(),\n            priority: \"high\"\n        }\n    };\n\n    // Actions automatiques\n    actionMsgs.push({topic: \"station/control/led\", payload: \"STORM\"});\nactionMsgs.push({topic: \"station/control/shutters\", payload: \"CLOSE\"});\n}\n\n// Retour des messages\nvar outputs = [alertMsg];\nfor (var i = 0; i < 2; i++) {\n    outputs.push(actionMsgs[i] || null);\n}\n\nreturn outputs;\n",
+        "outputs": 3,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 300,
+        "wires": [
+            [
+                "62d672ffe417918d",
+                "2e24022f498d1c5b"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a5f9bac4ea65bc9e",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Alerte Pollution",
+        "func": "\n// Récupération des valeurs actuelles\nvar temp = global.get(\"current_temperature\") || 20;\nvar humidity = global.get(\"current_humidity\") || 50;\nvar windSpeed = global.get(\"current_wind_speed\") || 0;\nvar airQuality = global.get(\"current_air_quality\") || 400;\n\nvar alertActive = false;\nvar alertMsg = null;\nvar actionMsgs = [];\n\n// Condition d'alerte: airQuality > 700\nif (airQuality > 700) {\n    alertActive = true;\n\n    alertMsg = {\n        payload: {\n            type: \"air_pollution\",\n            emoji: \"🏭\",\n            message: \"POLLUTION DE L'AIR\",\n            value: airQuality,\n            active: true,\n            timestamp: new Date().toISOString(),\n            priority: \"high\"\n        }\n    };\n\n    // Actions automatiques\n    actionMsgs.push({topic: \"station/control/led\", payload: \"POLLUTION\"});\n}\n\n// Retour des messages\nvar outputs = [alertMsg];\nfor (var i = 0; i < 1; i++) {\n    outputs.push(actionMsgs[i] || null);\n}\n\nreturn outputs;\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 240,
+        "wires": [
+            [
+                "62d672ffe417918d",
+                "2e24022f498d1c5b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3a4abcf34afcefcf",
+        "type": "ui_template",
+        "z": "728784ccff1604fc",
+        "group": "c270e63cfb454440",
+        "name": "Affichage Météo Principal",
+        "order": 2,
+        "width": 12,
+        "height": 6,
+        "format": "<!-- Template Conditions Actuelles avec Transparence -->\n<div class=\"weather-display\" style=\"\n    background: rgba(255, 255, 255, 0.15);\n    backdrop-filter: blur(15px);\n    -webkit-backdrop-filter: blur(15px);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    border-radius: 20px;\n    padding: 30px;\n    color: #ffffff;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n    position: relative;\n    overflow: hidden;\n\">\n    <div class=\"weather-emoji\">{{msg.payload.emoji || '🌤️'}}</div>\n    <div class=\"weather-info\">\n        <h1 class=\"weather-temp\" style=\"\n            color: #ffffff;\n            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);\n            -webkit-background-clip: text;\n            -webkit-text-fill-color: transparent;\n            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n            margin: 0;\n            font-size: 4rem;\n            font-weight: 300;\n        \">{{msg.payload.temperature || 20}}°C</h1>\n        <p class=\"weather-desc\" style=\"\n            background: none !important;\n            background-color: transparent !important;\n            color: #ffffff;\n            margin: 20px 0;\n            font-size: 1.2rem;\n            font-weight: 500;\n            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);\n            text-align: center;\n            border: none !important;\n            padding: 0 !important;\n        \">{{msg.payload.description || 'Conditions normales'}}</p>\n        <small style=\"\n            color: rgba(255, 255, 255, 0.7);\n            background: rgba(255, 255, 255, 0.1);\n            backdrop-filter: blur(5px);\n            -webkit-backdrop-filter: blur(5px);\n            border-radius: 10px;\n            padding: 8px 12px;\n            border: 1px solid rgba(255, 255, 255, 0.15);\n            display: block;\n            text-align: center;\n        \">Dernière mise à jour: {{msg.payload.timestamp | date:'HH:mm:ss'}}</small>\n    </div>\n    <div class=\"weather-stats\" style=\"\n        display: grid;\n        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));\n        gap: 15px;\n    \">\n        <div style=\"\n            background: rgba(255, 255, 255, 0.1);\n            backdrop-filter: blur(8px);\n            -webkit-backdrop-filter: blur(8px);\n            border: 1px solid rgba(255, 255, 255, 0.2);\n            border-radius: 12px;\n            padding: 15px;\n            color: #ffffff;\n            text-align: center;\n            transition: all 0.3s ease;\n        \">💧 {{msg.payload.humidity || 50}}%</div>\n        <div style=\"\n            background: rgba(255, 255, 255, 0.1);\n            backdrop-filter: blur(8px);\n            -webkit-backdrop-filter: blur(8px);\n            border: 1px solid rgba(255, 255, 255, 0.2);\n            border-radius: 12px;\n            padding: 15px;\n            color: #ffffff;\n            text-align: center;\n            transition: all 0.3s ease;\n        \">☀️ {{msg.payload.light || 500}} lux</div>\n        <div style=\"\n            background: rgba(255, 255, 255, 0.1);\n            backdrop-filter: blur(8px);\n            -webkit-backdrop-filter: blur(8px);\n            border: 1px solid rgba(255, 255, 255, 0.2);\n            border-radius: 12px;\n            padding: 15px;\n            color: #ffffff;\n            text-align: center;\n            transition: all 0.3s ease;\n        \">💨 {{msg.payload.windSpeed || 0}} km/h</div>\n        <div style=\"\n            background: rgba(255, 255, 255, 0.1);\n            backdrop-filter: blur(8px);\n            -webkit-backdrop-filter: blur(8px);\n            border: 1px solid rgba(255, 255, 255, 0.2);\n            border-radius: 12px;\n            padding: 15px;\n            color: #ffffff;\n            text-align: center;\n            transition: all 0.3s ease;\n        \">🌫️ {{msg.payload.airQuality || 400}} ppm</div>\n    </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "weather-main-display",
+        "x": 790,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "62d672ffe417918d",
+        "type": "ui_template",
+        "z": "728784ccff1604fc",
+        "group": "c270e63cfb454440",
+        "name": "Affichage Alertes",
+        "order": 3,
+        "width": 12,
+        "height": 3,
+        "format": "<div ng-if=\"msg.payload.active\" class=\"alert-section\" style=\"\n    background: rgba(255, 255, 255, 0.15);\n    backdrop-filter: blur(15px);\n    -webkit-backdrop-filter: blur(15px);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    border-radius: 20px;\n    padding: 30px;\n    color: #ffffff;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n    position: relative;\n    overflow: hidden;\n    margin: 20px 0;\n\">\n    <h3 style=\"\n        background: none !important;\n        background-color: transparent !important;\n        color: #ffffff;\n        margin: 0 0 15px 0;\n        font-size: 1.5rem;\n        font-weight: 600;\n        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);\n        text-align: center;\n        border: none !important;\n        padding: 0 !important;\n    \">{{msg.payload.emoji}} {{msg.payload.message}}</h3>\n    <p style=\"\n        background: none !important;\n        background-color: transparent !important;\n        color: #ffffff;\n        margin: 15px 0;\n        font-size: 1rem;\n        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);\n        text-align: center;\n        border: none !important;\n        padding: 0 !important;\n    \">Valeur détectée: {{msg.payload.value}} - Priorité: {{msg.payload.priority}}</p>\n    <small style=\"\n        color: rgba(255, 255, 255, 0.7);\n        background: rgba(255, 255, 255, 0.1);\n        backdrop-filter: blur(5px);\n        -webkit-backdrop-filter: blur(5px);\n        border-radius: 10px;\n        padding: 8px 12px;\n        border: 1px solid rgba(255, 255, 255, 0.15);\n        display: block;\n        text-align: center;\n        margin-top: 15px;\n    \">{{msg.payload.timestamp | date:'dd/MM/yyyy HH:mm:ss'}}</small>\n</div>\n\n<div ng-if=\"!msg.payload.active\" style=\"\n    background: rgba(39, 174, 96, 0.15);\n    backdrop-filter: blur(15px);\n    -webkit-backdrop-filter: blur(15px);\n    border: 1px solid rgba(39, 174, 96, 0.3);\n    border-radius: 20px;\n    padding: 30px;\n    text-align: center;\n    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);\n    position: relative;\n    overflow: hidden;\n    margin: 20px 0;\n\">\n    <h3 style=\"\n        background: none !important;\n        background-color: transparent !important;\n        color: #ffffff;\n        margin: 0 0 15px 0;\n        font-size: 1.5rem;\n        font-weight: 600;\n        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n        border: none !important;\n        padding: 0 !important;\n    \">✅ Aucune alerte active</h3>\n    <p style=\"\n        background: none !important;\n        background-color: transparent !important;\n        color: rgba(255, 255, 255, 0.9);\n        margin: 0;\n        font-size: 1rem;\n        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n        border: none !important;\n        padding: 0 !important;\n    \">Toutes les conditions sont normales</p>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "alerts-display",
+        "x": 1630,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d555d9b7fb1532a",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Bouton Canicule",
+        "group": "798def0a7afc4a6a",
+        "order": 1,
+        "width": 6,
+        "height": 2,
+        "passthru": false,
+        "label": "🔥 LED Canicule",
+        "tooltip": "Contrôler la LED canicule",
+        "color": "white",
+        "bgcolor": "#ff6b6b",
+        "className": "led-button led-canicule",
+        "icon": "fa-lightbulb-o",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manual_toggle_canicule",
+        "topicType": "str",
+        "x": 1340,
+        "y": 880,
+        "wires": [
+            [
+                "9a9644295b35beab"
+            ]
+        ]
+    },
+    {
+        "id": "9a9644295b35beab",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Toggle LED Canicule",
+        "func": "\nlet currentState = context.get(\"led_canicule_state\") || \"OFF\";\nif (currentState === \"OFF\") {\n    msg.payload = \"ON\";\n    context.set(\"led_canicule_state\", \"ON\");\n    node.status({fill:\"green\",shape:\"dot\",text:\"ON\"});\n} else {\n    msg.payload = \"OFF\";\n    context.set(\"led_canicule_state\", \"OFF\");\n    node.status({fill:\"grey\",shape:\"ring\",text:\"OFF\"});\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "context.set(\"led_canicule_state\", \"OFF\");",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 880,
+        "wires": [
+            [
+                "5bb52916c70bc325"
+            ]
+        ]
+    },
+    {
+        "id": "5bb52916c70bc325",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT LED Canicule",
+        "topic": "station/control/led/heatwave",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 1740,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "5e739196ca75377d",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Bouton Secheresse",
+        "group": "798def0a7afc4a6a",
+        "order": 3,
+        "width": 6,
+        "height": 2,
+        "passthru": false,
+        "label": "🏜️ LED Sécheresse",
+        "tooltip": "Contrôler la LED secheresse",
+        "color": "white",
+        "bgcolor": "#f9ca24",
+        "className": "led-button led-secheresse",
+        "icon": "fa-lightbulb-o",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manual_toggle_secheresse",
+        "topicType": "str",
+        "x": 1330,
+        "y": 920,
+        "wires": [
+            [
+                "fc7ada9ebebc7c27"
+            ]
+        ]
+    },
+    {
+        "id": "fc7ada9ebebc7c27",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Toggle LED Secheresse",
+        "func": "\nlet currentState = context.get(\"led_secheresse_state\") || \"OFF\";\nif (currentState === \"OFF\") {\n    msg.payload = \"ON\";\n    context.set(\"led_secheresse_state\", \"ON\");\n    node.status({fill:\"green\",shape:\"dot\",text:\"ON\"});\n} else {\n    msg.payload = \"OFF\";\n    context.set(\"led_secheresse_state\", \"OFF\");\n    node.status({fill:\"grey\",shape:\"ring\",text:\"OFF\"});\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"led_secheresse_state\", \"OFF\");",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 930,
+        "wires": [
+            [
+                "867dcf378ffa335a"
+            ]
+        ]
+    },
+    {
+        "id": "867dcf378ffa335a",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT LED Secheresse",
+        "topic": "station/control/led/drought",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 1740,
+        "y": 930,
+        "wires": []
+    },
+    {
+        "id": "749b9be3757ed835",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Bouton Tempete",
+        "group": "798def0a7afc4a6a",
+        "order": 2,
+        "width": 6,
+        "height": 2,
+        "passthru": false,
+        "label": "⛈️ LED Tempête",
+        "tooltip": "Contrôler la LED tempete",
+        "color": "white",
+        "bgcolor": "#6c5ce7",
+        "className": "led-button led-tempete",
+        "icon": "fa-lightbulb-o",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manual_toggle_tempete",
+        "topicType": "str",
+        "x": 1340,
+        "y": 980,
+        "wires": [
+            [
+                "1fc2ad9f09c564d0"
+            ]
+        ]
+    },
+    {
+        "id": "1fc2ad9f09c564d0",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Toggle LED Tempete",
+        "func": "\nlet currentState = context.get(\"led_tempete_state\") || \"OFF\";\nif (currentState === \"OFF\") {\n    msg.payload = \"ON\";\n    context.set(\"led_tempete_state\", \"ON\");\n    node.status({fill:\"green\",shape:\"dot\",text:\"ON\"});\n} else {\n    msg.payload = \"OFF\";\n    context.set(\"led_tempete_state\", \"OFF\");\n    node.status({fill:\"grey\",shape:\"ring\",text:\"OFF\"});\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "context.set(\"led_tempete_state\", \"OFF\");",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 980,
+        "wires": [
+            [
+                "9462776805a5e3a2"
+            ]
+        ]
+    },
+    {
+        "id": "9462776805a5e3a2",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT LED Tempete",
+        "topic": "station/control/led/storm",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 1740,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "b6a135ca6b040568",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Bouton Ventilateur",
+        "group": "798def0a7afc4a6a",
+        "order": 5,
+        "width": 6,
+        "height": 2,
+        "passthru": false,
+        "label": "💨 Ventilateur",
+        "tooltip": "Contrôler le ventilateur",
+        "color": "white",
+        "bgcolor": "#74b9ff",
+        "className": "led-button led-ventilateur",
+        "icon": "fa-fan",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manual_toggle_fan",
+        "topicType": "str",
+        "x": 1340,
+        "y": 1080,
+        "wires": [
+            [
+                "e9f45b7086631860"
+            ]
+        ]
+    },
+    {
+        "id": "e9f45b7086631860",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Toggle Ventilateur",
+        "func": "\nlet currentState = context.get(\"fan_state\") || \"OFF\";\nif (currentState === \"OFF\") {\n    msg.payload = \"ON\";\n    context.set(\"fan_state\", \"ON\");\n    node.status({fill:\"green\",shape:\"dot\",text:\"ON\"});\n} else {\n    msg.payload = \"OFF\";\n    context.set(\"fan_state\", \"OFF\");\n    node.status({fill:\"grey\",shape:\"ring\",text:\"OFF\"});\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "context.set(\"fan_state\", \"OFF\");",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 1080,
+        "wires": [
+            [
+                "696d4057f5965bb9"
+            ]
+        ]
+    },
+    {
+        "id": "696d4057f5965bb9",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT Ventilateur",
+        "topic": "station/control/fan",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 1740,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "ce1589d24e04ef9d",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Bouton Volets",
+        "group": "798def0a7afc4a6a",
+        "order": 6,
+        "width": 6,
+        "height": 2,
+        "passthru": false,
+        "label": "🪟 Volets",
+        "tooltip": "Contrôler les volets",
+        "color": "white",
+        "bgcolor": "#00b894",
+        "className": "led-button",
+        "icon": "fa-window-maximize",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manual_toggle_shutters",
+        "topicType": "str",
+        "x": 1340,
+        "y": 1130,
+        "wires": [
+            [
+                "78e69b2888c06f84"
+            ]
+        ]
+    },
+    {
+        "id": "78e69b2888c06f84",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Toggle Volets",
+        "func": "\nlet currentState = context.get(\"shutters_state\") || \"OPEN\";\nif (currentState === \"OPEN\") {\n    msg.payload = \"CLOSE\";\n    context.set(\"shutters_state\", \"CLOSE\");\n    node.status({fill:\"red\",shape:\"dot\",text:\"FERMÉ\"});\n} else {\n    msg.payload = \"OPEN\";\n    context.set(\"shutters_state\", \"OPEN\");\n    node.status({fill:\"green\",shape:\"dot\",text:\"OUVERT\"});\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "context.set(\"shutters_state\", \"OPEN\");",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 1130,
+        "wires": [
+            [
+                "7c68881f3ad5c90a"
+            ]
+        ]
+    },
+    {
+        "id": "7c68881f3ad5c90a",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT Volets",
+        "topic": "station/control/shutters",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 1740,
+        "y": 1130,
+        "wires": []
+    },
+    {
+        "id": "bc1b480188230b25",
+        "type": "ui_dropdown",
+        "z": "728784ccff1604fc",
+        "name": "Contrôle font_size",
+        "label": "📝 Taille Police",
+        "tooltip": "Sélectionner 📝 taille police",
+        "place": "Choisir petit...",
+        "group": "b76d7f91ce05476d",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Petit",
+                "value": "petit"
+            },
+            {
+                "label": "Moyen",
+                "value": "moyen"
+            },
+            {
+                "label": "Grand",
+                "value": "grand"
+            }
+        ],
+        "payload": "",
+        "topic": "station/screen/font_size",
+        "topicType": "str",
+        "className": "screen-control",
+        "x": 110,
+        "y": 1140,
+        "wires": [
+            [
+                "69a75d6430f6a489"
+            ]
+        ]
+    },
+    {
+        "id": "69a75d6430f6a489",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT Écran Font_Size",
+        "topic": "station/screen/font_size",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 360,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "ee138b276b6bb0e1",
+        "type": "ui_dropdown",
+        "z": "728784ccff1604fc",
+        "name": "Contrôle display_data",
+        "label": "📊 Données Affichées",
+        "tooltip": "Sélectionner 📊 données affichées",
+        "place": "Choisir température...",
+        "group": "b76d7f91ce05476d",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Température",
+                "value": "température"
+            },
+            {
+                "label": "Humidité",
+                "value": "humidité"
+            },
+            {
+                "label": "Tout",
+                "value": "tout"
+            }
+        ],
+        "payload": "",
+        "topic": "station/screen/display_data",
+        "topicType": "str",
+        "className": "screen-control",
+        "x": 110,
+        "y": 1180,
+        "wires": [
+            [
+                "92104d05c363302c"
+            ]
+        ]
+    },
+    {
+        "id": "92104d05c363302c",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT Écran Display_Data",
+        "topic": "station/screen/display_data",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 360,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "d04e5f5558ce7753",
+        "type": "ui_dropdown",
+        "z": "728784ccff1604fc",
+        "name": "Contrôle text_color",
+        "label": "🎨 Couleur Texte",
+        "tooltip": "Sélectionner 🎨 couleur texte",
+        "place": "Choisir blanc...",
+        "group": "b76d7f91ce05476d",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Blanc",
+                "value": "blanc"
+            },
+            {
+                "label": "Bleu",
+                "value": "bleu"
+            },
+            {
+                "label": "Vert",
+                "value": "vert"
+            },
+            {
+                "label": "Rouge",
+                "value": "rouge"
+            }
+        ],
+        "payload": "",
+        "topic": "station/screen/text_color",
+        "topicType": "str",
+        "className": "screen-control",
+        "x": 110,
+        "y": 1220,
+        "wires": [
+            [
+                "a6252b664dd98c0d"
+            ]
+        ]
+    },
+    {
+        "id": "a6252b664dd98c0d",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT Écran Text_Color",
+        "topic": "station/screen/text_color",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 360,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "e21d0657da2393ac",
+        "type": "ui_dropdown",
+        "z": "728784ccff1604fc",
+        "name": "Contrôle bg_color",
+        "label": "🌈 Couleur Fond",
+        "tooltip": "Sélectionner 🌈 couleur fond",
+        "place": "Choisir noir...",
+        "group": "b76d7f91ce05476d",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Noir",
+                "value": "noir"
+            },
+            {
+                "label": "Bleu",
+                "value": "bleu"
+            },
+            {
+                "label": "Vert",
+                "value": "vert"
+            }
+        ],
+        "payload": "",
+        "topic": "station/screen/bg_color",
+        "topicType": "str",
+        "className": "screen-control",
+        "x": 110,
+        "y": 1260,
+        "wires": [
+            [
+                "0a3c8873d5576ca9"
+            ]
+        ]
+    },
+    {
+        "id": "0a3c8873d5576ca9",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT Écran Bg_Color",
+        "topic": "station/screen/bg_color",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 360,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "f79921aadd764d79",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Reset Écran",
+        "group": "b76d7f91ce05476d",
+        "order": 5,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "label": "🔄 Réinitialiser Écran",
+        "tooltip": "Remettre l'écran aux paramètres par défaut",
+        "color": "white",
+        "bgcolor": "#e74c3c",
+        "className": "reset-button",
+        "icon": "fa-refresh",
+        "payload": "RESET",
+        "payloadType": "str",
+        "topic": "station/screen/reset",
+        "topicType": "str",
+        "x": 110,
+        "y": 1300,
+        "wires": [
+            [
+                "5f81eddc3bda770c"
+            ]
+        ]
+    },
+    {
+        "id": "5f81eddc3bda770c",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT Reset Écran",
+        "topic": "station/screen/reset",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 360,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "15fe88d83b6322c8",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Préparation Base de Données",
+        "func": "\nvar sensor = msg.payload.sensor;\nvar value = msg.payload.value;\nvar timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');\n\nvar sql = \"INSERT INTO sensor_data (timestamp, \" + sensor + \") VALUES (?, ?) ON DUPLICATE KEY UPDATE \" + sensor + \" = VALUES(\" + sensor + \");\";\nvar params = [timestamp, value];\n\nmsg.topic = sql;\nmsg.payload = params;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 940,
+        "wires": [
+            [
+                "4e3d7a553437af73"
+            ]
+        ]
+    },
+    {
+        "id": "2e24022f498d1c5b",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Sauvegarde Alertes",
+        "func": "\nif (msg.payload && msg.payload.active) {\n    var alertType = msg.payload.type;\n    var value = msg.payload.value;\n    var message = msg.payload.message;\n    var timestamp = msg.payload.timestamp;\n\n    var sql = \"INSERT INTO alerts (timestamp, alert_type, value, message, priority) VALUES (?, ?, ?, ?, ?)\";\n    var params = [timestamp, alertType, value, message, msg.payload.priority || 'medium'];\n\n    msg.topic = sql;\n    msg.payload = params;\n\n    return msg;\n} else {\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 160,
+        "wires": [
+            [
+                "4e3d7a553437af73"
+            ]
+        ]
+    },
+    {
+        "id": "4e3d7a553437af73",
+        "type": "mysql",
+        "z": "728784ccff1604fc",
+        "mydb": "r7s8t9u0.v1w2x",
+        "name": "Base de données",
+        "x": 1130,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2cc50b40ecd16c7a",
+        "type": "debug",
+        "z": "728784ccff1604fc",
+        "name": "Debug Simulation",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "aa9222c5246a20be",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Préparer Historique Wind_Speed",
+        "func": "\nvar value = msg.payload.value;\nvar timestamp = new Date(msg.payload.timestamp).getTime();\n\nvar history = global.get('wind_speedHistory') || [];\nhistory.push({x: timestamp, y: value});\n\n// Limiter l'historique à 100 points\nif (history.length > 100) {\n    history.shift();\n}\nglobal.set('wind_speedHistory', history);\n\nmsg.payload = history;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 360,
+        "wires": [
+            [
+                "2cc50b40ecd16c7a"
+            ]
+        ]
+    },
+    {
+        "id": "c9e4d6356bf25050",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Initialiser Contextes Globaux",
+        "func": "\nglobal.set('tempHistory', []);\nglobal.set('humidityHistory', []);\nglobal.set('lightHistory', []);\nglobal.set('airQualityHistory', []);\nglobal.set('windSpeedHistory', []);\nreturn null; // Ce nœud n'a pas besoin d'envoyer de message\n",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5cefb3800913fe93",
+        "type": "inject",
+        "z": "728784ccff1604fc",
+        "name": "Déclencher Initialisation",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 30,
+        "wires": [
+            [
+                "c9e4d6356bf25050"
+            ]
+        ]
+    },
+    {
+        "id": "abc9115f90f3259d",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Mettre à jour graphique température",
+        "func": "// Récupérer l'historique des températures\nvar history = global.get('tempHistory') || [];\n\n// Créer un message pour le graphique\nmsg.payload = [{\n    series: [\"Température\"],\n    data: [history.map(function(point) {\n        return {x: point.x, y: point.y};\n    })],\n    labels: [\"\"]\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 460,
+        "wires": [
+            [
+                "54fa79b541de185e"
+            ]
+        ]
+    },
+    {
+        "id": "54fa79b541de185e",
+        "type": "ui_chart",
+        "z": "728784ccff1604fc",
+        "name": "Graphique Température",
+        "group": "7811d6080c5c4a90",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "🌡️ Température (24h)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Pas de données",
+        "dot": false,
+        "ymin": "10",
+        "ymax": "40",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "minute",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 950,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b6645fdacbfb39f4",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Mettre à jour graphique humidité",
+        "func": "// Récupérer l'historique des humidités\nvar history = global.get('humidityHistory') || [];\n\n// Créer un message pour le graphique\nmsg.payload = [{\n    series: [\"Humidité\"],\n    data: [history.map(function(point) {\n        return {x: point.x, y: point.y};\n    })],\n    labels: [\"\"]\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 520,
+        "wires": [
+            [
+                "66fb16ba4e00ad94"
+            ]
+        ]
+    },
+    {
+        "id": "66fb16ba4e00ad94",
+        "type": "ui_chart",
+        "z": "728784ccff1604fc",
+        "name": "Graphique Humidité",
+        "group": "7811d6080c5c4a90",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "💧 Humidité (24h)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Pas de données",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "minute",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 980,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "129c1a1496a0dc1e",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Mettre à jour graphique luminosité",
+        "func": "// Récupérer l'historique des luminosités\nvar history = global.get('lightHistory') || [];\n\n// Créer un message pour le graphique\nmsg.payload = [{\n    series: [\"Luminosité\"],\n    data: [history.map(function(point) {\n        return {x: point.x, y: point.y};\n    })],\n    labels: [\"\"]\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "e346102817a438eb"
+            ]
+        ]
+    },
+    {
+        "id": "e346102817a438eb",
+        "type": "ui_chart",
+        "z": "728784ccff1604fc",
+        "name": "Graphique Luminosité",
+        "group": "76c718b00c082162",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "☀️ Luminosité (24h)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Pas de données",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "2000",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "minute",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1000,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f75255362bade66",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Mettre à jour graphique qualité air",
+        "func": "// Récupérer l'historique des qualités d'air\nvar history = global.get('airQualityHistory') || [];\n\n// Créer un message pour le graphique\nmsg.payload = [{\n    series: [\"Qualité Air\"],\n    data: [history.map(function(point) {\n        return {x: point.x, y: point.y};\n    })],\n    labels: [\"\"]\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 620,
+        "wires": [
+            [
+                "baa04683ad2089d8"
+            ]
+        ]
+    },
+    {
+        "id": "baa04683ad2089d8",
+        "type": "ui_chart",
+        "z": "728784ccff1604fc",
+        "name": "Graphique Qualité Air",
+        "group": "87c17016d6970428",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "🌫️ Qualité Air (24h)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Pas de données",
+        "dot": false,
+        "ymin": "300",
+        "ymax": "800",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "minute",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1000,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "898f0915144a2e81",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Mettre à jour graphique vent",
+        "func": "// Récupérer l'historique des vitesses de vent\nvar history = global.get('windSpeedHistory') || [];\n\n// Créer un message pour le graphique\nmsg.payload = [{\n    series: [\"Vitesse Vent\"],\n    data: [history.map(function(point) {\n        return {x: point.x, y: point.y};\n    })],\n    labels: [\"\"]\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 660,
+        "wires": [
+            [
+                "08f632baee085286"
+            ]
+        ]
+    },
+    {
+        "id": "08f632baee085286",
+        "type": "ui_chart",
+        "z": "728784ccff1604fc",
+        "name": "Graphique Vitesse Vent",
+        "group": "87c17016d6970428",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "💨 Vitesse Vent (24h)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Pas de données",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "80",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "minute",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 980,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1766f0d8d3278844",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT LED Jour",
+        "topic": "station/control/led/day",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 1720,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "b9bb2a2aca429bab",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Toggle LED Jour",
+        "func": "\nlet currentState = context.get(\"led_day_state\") || \"OFF\";\nif (currentState === \"OFF\") {\n    msg.payload = \"ON\";\n    context.set(\"led_day_state\", \"ON\");\n    node.status({fill:\"green\",shape:\"dot\",text:\"ON\"});\n} else {\n    msg.payload = \"OFF\";\n    context.set(\"led_tempete_state\", \"OFF\");\n    node.status({fill:\"grey\",shape:\"ring\",text:\"OFF\"});\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "context.set(\"led_tempete_state\", \"OFF\");",
+        "finalize": "",
+        "libs": [],
+        "x": 1520,
+        "y": 1040,
+        "wires": [
+            [
+                "1766f0d8d3278844"
+            ]
+        ]
+    },
+    {
+        "id": "091bb4c0000252d5",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Bouton Jour",
+        "group": "798def0a7afc4a6a",
+        "order": 2,
+        "width": 6,
+        "height": 2,
+        "passthru": false,
+        "label": " ☀️LED Jour",
+        "tooltip": "Contrôler la LED jour",
+        "color": "white",
+        "bgcolor": "#6c5ce7",
+        "className": "led-button led-jour",
+        "icon": "fa-lightbulb-o",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manual_toggle_jour",
+        "topicType": "str",
+        "x": 1330,
+        "y": 1040,
+        "wires": [
+            [
+                "b9bb2a2aca429bab"
+            ]
+        ]
+    },
+    {
+        "id": "6530a334e6460670",
+        "type": "mqtt out",
+        "z": "728784ccff1604fc",
+        "name": "MQTT LED Nuit",
+        "topic": "station/control/led/night",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "80da8ab42c6145b2",
+        "x": 1680,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "8cf9b11afb37b826",
+        "type": "function",
+        "z": "728784ccff1604fc",
+        "name": "Toggle LED Nuit",
+        "func": "\nlet currentState = context.get(\"led_nuit_state\") || \"OFF\";\nif (currentState === \"OFF\") {\n    msg.payload = \"ON\";\n    context.set(\"led_nuit_state\", \"ON\");\n    node.status({fill:\"green\",shape:\"dot\",text:\"ON\"});\n} else {\n    msg.payload = \"OFF\";\n    context.set(\"led_nuit_state\", \"OFF\");\n    node.status({fill:\"grey\",shape:\"ring\",text:\"OFF\"});\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "context.set(\"led_tempete_state\", \"OFF\");",
+        "finalize": "",
+        "libs": [],
+        "x": 1480,
+        "y": 1200,
+        "wires": [
+            [
+                "6530a334e6460670"
+            ]
+        ]
+    },
+    {
+        "id": "09eac64dbe295c0b",
+        "type": "ui_button",
+        "z": "728784ccff1604fc",
+        "name": "Bouton Nuit",
+        "group": "798def0a7afc4a6a",
+        "order": 2,
+        "width": 6,
+        "height": 2,
+        "passthru": false,
+        "label": "🌃 LED Nuit",
+        "tooltip": "Contrôler la LED nuit",
+        "color": "white",
+        "bgcolor": "#6c5ce7",
+        "className": "led-button led-nuiy",
+        "icon": "fa-lightbulb-o",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "manual_toggle_nuit",
+        "topicType": "str",
+        "x": 1290,
+        "y": 1200,
+        "wires": [
+            [
+                "8cf9b11afb37b826"
+            ]
+        ]
+    },
+    {
+        "id": "c270e63cfb454440",
+        "type": "ui_group",
+        "name": "🌤️ Conditions Actuelles",
+        "tab": "08e8019b89a9470e",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": "conditions-group"
+    },
+    {
+        "id": "80da8ab42c6145b2",
+        "type": "mqtt-broker",
+        "name": "Station Météo MQTT",
+        "broker": "mqtt.ci-ciad.utbm.fr",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "798def0a7afc4a6a",
+        "type": "ui_group",
+        "name": "🎛️ Contrôles LED & Actions",
+        "tab": "08e8019b89a9470e",
+        "order": 5,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": "controls-group"
+    },
+    {
+        "id": "b76d7f91ce05476d",
+        "type": "ui_group",
+        "name": "📺 Contrôle Écran ESP32",
+        "tab": "08e8019b89a9470e",
+        "order": 6,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": "screen-group"
+    },
+    {
+        "id": "r7s8t9u0.v1w2x",
+        "type": "MySQLdatabase",
+        "name": "Weather Station DB",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "weather_station",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "7811d6080c5c4a90",
+        "type": "ui_group",
+        "name": "📊 Historique 24h",
+        "tab": "08e8019b89a9470e",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": "history-group"
+    },
+    {
+        "id": "76c718b00c082162",
+        "type": "ui_group",
+        "name": "📊 Historique 24h 2",
+        "tab": "08e8019b89a9470e",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": "history-group"
+    },
+    {
+        "id": "87c17016d6970428",
+        "type": "ui_group",
+        "name": "📊 Historique 24h 3",
+        "tab": "08e8019b89a9470e",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "08e8019b89a9470e",
+        "type": "ui_tab",
+        "name": "Station Météo",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
