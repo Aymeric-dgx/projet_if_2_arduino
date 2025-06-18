@@ -123,13 +123,14 @@ void callback(char* topic, byte* message, unsigned int length) {
 
   //------------------------------------------- Début intéractions NodeRed -> ESP32 -----------------------------------------//
   
-  // (EXEMPLE) Vérification du message, on->activer LED, off->éteindre LED
+  /* (EXEMPLE) Vérification du message, on->activer LED, off->éteindre LED
   if(messageTemp == "on") {
     digitalWrite(ledPin, HIGH);
   }
   else if(messageTemp == "off") {
     digitalWrite(ledPin, LOW);
   }
+  */
 }
 
 
@@ -239,7 +240,7 @@ void loop () {
   // Ecriture sur l'ecran OLED
   display.print("Temperature : ");
   display.print(température);
-  display.print(" C");
+  display.println(" C");
 
   display.print("Humidite : ");
   display.print(humidité);
@@ -279,21 +280,19 @@ void loop () {
 
   // Cette partie vérifie le temps écoulé depuis le dernier message publié et n'envoie le prochain message que toutes les 0.5 secondes (500 millisecondes).
   long now = millis();
-  if (now - lastMsg > 500) {
+  if (now - lastMsg > 10000) { // Envoie des messages toute les 2 secondes
 		lastMsg = now;
 		
     //---------------------------------------- Début intéraction ESP32 -> NodeRed ---------------------------------------//
 
-		/// (EXEMPLE) Lire l'état actuel du bouton et publier un message sur le topic "esp32/button" en utilisant la fonction client.publish()
-		if (digitalRead(buttonPin) == HIGH) {
-      Serial.println("Publishing: on");
-      client_degieux.publish("esp32/button_AYMERIC_DEGIEUX", "on");
-    } else {
-      Serial.println("Publishing: off");
-      client_degieux.publish("esp32/button_AYMERIC_DEGIEUX", "off");
-    }
-  }
+    // Envoie des données au NodeRed
+    client_degieux.publish("station/humidity", String(humidité).c_str());
+    client_degieux.publish("station/temperature", String(température).c_str());
+    client_degieux.publish("station/light", String(luminosité).c_str());
+    client_degieux.publish("station/air_quality", String(air_value).c_str());
+    client_degieux.publish("station/wind_speed", String(vitesse_vent).c_str());
 
+  }
 
   delay(2000);
 }
