@@ -1,5 +1,6 @@
 // Branches à éviter : 0, 2, 12, 15
-// Branche sans risque : GPIO 4, 5, 13, 14, 16, 17, 18, 19, 21, 22, 23, 25, 26, 27, 32, 33
+// Branche sans risque : 4, 5, 13, 14, 16, 17, 18, 19, 21, 22, 23, 25, 26, 27, 32, 33
+// Branche libre : 19, 21, 22, 25, 
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -13,9 +14,15 @@
 // pin_SDA = 21, pin_SCL = 22
 int temp_id = 26;
 int ventilateur_id = 13;
-int qualité_A0_id = 34;
+int qualité_A0_id = 34; 
 int buzzer_id = 23;
 int capteur_magnetique_id = 18;
+int LED_tempete_id = 4;
+int LED_canicule_id = 5;
+int LED_secheresse_id = 14;
+int LED_volets_id = 33;
+int LED_jour_id = 27;
+int LED_nuit_id = 32;
 
 int seuil_temp = 30; // Alerte si supérieur à 30°C
 int seuil_vitesse_vent = 60; //Alerte si supérieur à km/h
@@ -25,7 +32,7 @@ int seuil_luminosité = 1000; // Seuil de luminosité pour passer de joir à nui
 volatile int nb_tours = 0; // Variable globale
 unsigned long dernier_calcul = 0; 
 float vitesse_vent = 0;
-float diamètre_anémomètre = 0.5; // En mètres
+float diamètre_anémomètre = 0.08; // 8 cm en mètres
 
 
 // Création de l'objet dht pour la température
@@ -57,6 +64,16 @@ void setup () {
   // Déclarion des OUTPUT et INPUT
   pinMode (temp_id, OUTPUT);
   pinMode(ventilateur_id, OUTPUT);
+  pinMode(buzzer_id, OUTPUT);
+
+  pinMode(LED_tempete_id, OUTPUT);
+  pinMode(LED_canicule_id, OUTPUT);
+  pinMode(LED_secheresse_id, OUTPUT);
+  pinMode(LED_volets_id, OUTPUT);
+  pinMode(LED_jour_id, OUTPUT);
+  pinMode(LED_nuit_id, OUTPUT);
+
+
 
   // Initialiser I2C
   Wire.begin();  // SDA, SCL
@@ -107,28 +124,28 @@ void loop () {
   display.setCursor(0, 0);             // Position de départ (x, y)
 
   // Ecriture sur l'ecran OLED
-  display.print("Température : ");
+  display.print("Temperature : ");
   display.print(température);
-  display.print(" °C");
+  display.print(" C");
 
-  display.print("Humidité : ");
+  display.print("Humidite : ");
   display.print(humidité);
-  display.print(" %");
+  display.println(" %");
 
-  display.print("Vitesse du vent : ");
+  display.print("Vitesse vent : ");
   display.print(vitesse_vent);
   display.println(" km/h");
 
-  display.print("Qualité de l'aire : ");
+
   if (air_value < 400) {
     display.println("Air pur");
   } else if (air_value < 1000) {
     display.println("Air moyen");
   } else {
-    display.println("Air pollué");
+    display.println("Air pollue");
   }
 
-  display.print("Luminosité : ");
+  display.print("Luminosite : ");
   display.print(luminosité);
   display.println(" lx");
 
