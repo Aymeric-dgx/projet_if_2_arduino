@@ -12,8 +12,6 @@
 
 
 
-// Déclaration des pin + seuils limites, ...
-
 // Déclaration pin
 // pin_SDA = 21, pin_SCL = 22
 int temp_id = 26;
@@ -28,17 +26,16 @@ int LED_volets_id = 33;
 int LED_jour_id = 27;
 int LED_nuit_id = 32;
 
-// Seuils limites
-int seuil_temp = 30; // Alerte si supérieur à 30°C
-int seuil_vitesse_vent = 60; //Alerte si supérieur à km/h
-int seuil_humidité = 30; // Alerte si inférieur à 30%
-int seuil_luminosité = 1000; // Seuil de luminosité pour passer de joir à nuit
-
 // Variable pour le calcul de la vitesse
 volatile int nb_tours = 0; // Variable globale
 unsigned long dernier_calcul = 0; 
 float vitesse_vent = 0;
 float diamètre_anémomètre = 0.08; // 8 cm en mètres
+
+// Variables pour l'activation du buzzer
+int alertes[3] = {0,0,0}; // Tempete, Canicule, Sécheresse  (Tableau pour détecter une nouvelle activation d'une alerte
+bool buzzer_actif = false;
+unsigned long buzzer_start = 0;
 
 
 // Déclaration variable NodeRed
@@ -52,7 +49,7 @@ const char* mqtt_server = "mqtt.ci-ciad.utbm.fr";
 
 WiFiClient espace_client_degieux; // Initialiser la bibliothèque client wifi (connexion WiFi)
 PubSubClient client_degieux(espace_client_degieux); // Créer un objet client MQTT (connexion MQTT) 
-// Maintenant, notre client MQTT s'appelle "client". Nous devons maintenant créer une connexion à un broker.
+// now, notre client MQTT s'appelle "client". Nous devons now créer une connexion à un broker.
 long lastMsg = 0;
 
 
@@ -124,18 +121,13 @@ void callback(char* topic, byte* message, unsigned int length) {
   //------------------------------------------- Début intéractions NodeRed -> ESP32 -----------------------------------------//
   if (String(topic) == "station/control/led/heatwave") {
     digitalWrite(LED_canicule_id, msg == "ON" ? HIGH : LOW);
+    digitalWrite(ventilateur_id, msg == "ON" ? HIGH : LOW);
   }
   else if (String(topic) == "station/control/led/drought") {
     digitalWrite(LED_secheresse_id, msg == "ON" ? HIGH : LOW);
   }
   else if (String(topic) == "station/control/led/storm") {
     digitalWrite(LED_tempete_id, msg == "ON" ? HIGH : LOW);
-  }
-  else if (String(topic) == "station/control/fan") {
-    digitalWrite(ventilateur_id, msg == "ON" ? HIGH : LOW);
-  }
-  else if (String(topic) == "station/control/shutters") {
-    digitalWrite(LED_volets_id, msg == "CLOSE" ? HIGH : LOW);
   }
 }
 
@@ -227,17 +219,17 @@ void loop () {
   int air_value = analogRead(qualité_A0_id);
   
   // Calcule de la vitesse du vent
-  unsigned long maintenant = millis(); 
+  unsigned long now = millis(); 
 
-  if (maintenant - dernier_calcul >= 5000) {
+  if (now - dernier_calcul >= 5000) {
     float tours_par_sec = nb_tours / 5.0;
     float perimetre = diamètre_anémomètre * PI;
     vitesse_vent = tours_par_sec * perimetre * 3.6; // m/s → km/h
 
     nb_tours = 0;
-    dernier_calcul = maintenant;
+    dernier_calcul = now;
 
-    if(vitesse_vent>1000) {
+    if(vitesse_vent>300) {
       vitesse_vent=0;
     }
   }
@@ -245,6 +237,54 @@ void loop () {
   // Activation LED jour/nuit
   digitalWrite(LED_jour_id, luminosité > 20 ? HIGH : LOW);
   digitalWrite(LED_nuit_id, luminosité < 20 ? HIGH : LOW);
+
+
+  // Partie buzzer
+  // Si nouvelle alertes, activer le buzzer
+  if(alertes[0] == 0 && digitalRead(LED_tempete_id) == 1){
+    alertes[0] = 1;
+    digitalWrite(buzzer_id, HIGH);      // Allume le buzzer
+    buzzer_start = millis();            // Sauvegarde le moment d'activation
+    buzzer_actif = true;
+  }
+  if(alertes[1] == 0 && digitalRead(LED_canicule_id) == 1){
+    alertes[1] = 1;
+    digitalWrite(buzzer_id, HIGH);      // Allume le buzzer
+    buzzer_start = millis();            // Sauvegarde le moment d'activation
+    buzzer_actif = true;
+  }
+  if(alertes[2] == 0 && digitalRead(LED_secheresse_id) == 1){
+    alertes[2] = 1;
+    digitalWrite(buzzer_id, HIGH);      // Allume le buzzer
+    buzzer_start = millis();            // Sauvegarde le moment d'activation
+    buzzer_actif = true;
+  }
+
+  // Une fois le buzzer activé, le couper après 2 secondes
+  if(buzzer_actif && now - buzzer_start >= 2000) {
+    digitalWrite(buzzer_id, LOW);
+    buzzer_actif = false;
+  }
+
+  // Repasse le tableau des alertes à 0 si il n'y a plus d'alertes
+  if(!digitalRead(LED_tempete_id)) {
+    alertes[0] = 0;
+  }
+  if(!digitalRead(LED_canicule_id)) {
+    alertes[1] = 0;
+  }
+  if(!digitalRead(LED_secheresse_id)) {
+    alertes[2] = 0;
+  }
+
+
+  // Si il y'a une alerte, dire de fermer les volets
+  if(digitalRead(LED_tempete_id)==1 || digitalRead(LED_canicule_id)==1 || digitalRead(LED_secheresse_id)==1) {
+    digitalWrite(LED_volets_id, HIGH);
+  } else {
+    digitalWrite(LED_volets_id, LOW);
+  }
+
 
   // Affichage sur l'écran OLED
   
@@ -298,7 +338,6 @@ void loop () {
   client_degieux.loop();
 
   // Vérifie le temps écoulé depuis le dernier message publié et vérifie si on doit renvoyer un nouveau message (si temps écoulé)
-  long now = millis();
   if (now - lastMsg > 2000) { // Envoie des messages toute les 2 secondes
 		lastMsg = now;
 		
