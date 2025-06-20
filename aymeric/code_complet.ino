@@ -112,25 +112,31 @@ void callback(char* topic, byte* message, unsigned int length) {
   
 
   // Conversion des byte (message) en str
-  String messageTemp;
+  String msg;
   
   for (int i = 0; i < length; i++) {
     Serial.print((char)message[i]);
-    messageTemp += (char)message[i];
+    msg += (char)message[i];
   }
   Serial.println();
 
 
   //------------------------------------------- Début intéractions NodeRed -> ESP32 -----------------------------------------//
-  
-  /* (EXEMPLE) Vérification du message, on->activer LED, off->éteindre LED
-  if(messageTemp == "on") {
-    digitalWrite(ledPin, HIGH);
+  if (String(topic) == "station/control/led/heatwave") {
+    digitalWrite(LED_canicule_id, msg == "ON" ? HIGH : LOW);
   }
-  else if(messageTemp == "off") {
-    digitalWrite(ledPin, LOW);
+  else if (String(topic) == "station/control/led/drought") {
+    digitalWrite(LED_secheresse_id, msg == "ON" ? HIGH : LOW);
   }
-  */
+  else if (String(topic) == "station/control/led/storm") {
+    digitalWrite(LED_tempete_id, msg == "ON" ? HIGH : LOW);
+  }
+  else if (String(topic) == "station/control/fan") {
+    digitalWrite(ventilateur_id, msg == "ON" ? HIGH : LOW);
+  }
+  else if (String(topic) == "station/control/shutters") {
+    digitalWrite(LED_volets_id, msg == "CLOSE" ? HIGH : LOW);
+  }
 }
 
 
@@ -144,7 +150,12 @@ void reconnect() {
 
     if (client_degieux.connect("espace_client_degieux")) {
       Serial.println("connected");
-      client_degieux.subscribe("esp32/led_AYMERIC_DEGIEUX"); // S'abonne au topic
+      // Abonnement au topics
+      client_degieux.subscribe("station/control/led/heatwave");
+      client_degieux.subscribe("station/control/led/drought");
+      client_degieux.subscribe("station/control/led/storm");
+      client_degieux.subscribe("station/control/fan");
+      client_degieux.subscribe("station/control/shutters");
     } 
 
     else {
@@ -225,7 +236,15 @@ void loop () {
 
     nb_tours = 0;
     dernier_calcul = maintenant;
+
+    if(vitesse_vent>1000) {
+      vitesse_vent=0;
+    }
   }
+
+  // Activation LED jour/nuit
+  digitalWrite(LED_jour_id, luminosité > 20 ? HIGH : LOW);
+  digitalWrite(LED_nuit_id, luminosité < 20 ? HIGH : LOW);
 
   // Affichage sur l'écran OLED
   
@@ -278,9 +297,9 @@ void loop () {
   // Maintient la connexion avec le serveur MQTT en vérifiant si de nouveaux messages sont arrivés et en envoyant les messages en attente.
   client_degieux.loop();
 
-  // Cette partie vérifie le temps écoulé depuis le dernier message publié et n'envoie le prochain message que toutes les 0.5 secondes (500 millisecondes).
+  // Vérifie le temps écoulé depuis le dernier message publié et vérifie si on doit renvoyer un nouveau message (si temps écoulé)
   long now = millis();
-  if (now - lastMsg > 10000) { // Envoie des messages toute les 2 secondes
+  if (now - lastMsg > 2000) { // Envoie des messages toute les 2 secondes
 		lastMsg = now;
 		
     //---------------------------------------- Début intéraction ESP32 -> NodeRed ---------------------------------------//
@@ -294,5 +313,5 @@ void loop () {
 
   }
 
-  delay(2000);
-}
+  delay(500);
+} est ce que le calcul de la vitesse du vent est correct ? (j'ai des valeurs énomes tels que 2500km/h par exemple)
