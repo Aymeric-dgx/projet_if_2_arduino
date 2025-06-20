@@ -314,4 +314,4 @@ void loop () {
   }
 
   delay(500);
-} est ce que le calcul de la vitesse du vent est correct ? (j'ai des valeurs énomes tels que 2500km/h par exemple)
+}
