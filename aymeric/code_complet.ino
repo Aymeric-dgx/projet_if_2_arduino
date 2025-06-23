@@ -213,10 +213,10 @@ void loop () {
   //-------------------- Partie "hardware" ----------------------//
 
   // Récupération des données "classiques"
-  float humidité = dht.readHumidity();
-  float température = dht.readTemperature();
-  float luminosité = lightMeter.readLightLevel();
-  int air_value = analogRead(qualité_A0_id);
+  humidité = dht.readHumidity();
+  température = dht.readTemperature();
+  luminosité = lightMeter.readLightLevel();
+  air_value = analogRead(qualité_A0_id);
   
   // Calcule de la vitesse du vent
   unsigned long now = millis(); 
@@ -260,8 +260,8 @@ void loop () {
     buzzer_actif = true;
   }
 
-  // Une fois le buzzer activé, le couper après 2 secondes
-  if(buzzer_actif && now - buzzer_start >= 2000) {
+  // Une fois le buzzer activé, le couper après 1 secondes
+  if(buzzer_actif && now - buzzer_start >= 1000) {
     digitalWrite(buzzer_id, LOW);
     buzzer_actif = false;
   }
