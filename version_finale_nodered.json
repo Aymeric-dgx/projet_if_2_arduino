@@ -1,0 +1,66 @@
+[
+    {
+        "id": "b799a46edd7dc312",
+        "type": "ui_chart",
+        "z": "3446ae8312b03794",
+        "name": "Graphique Température",
+        "group": "7811d6080c5c4a90",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "🌡️ Température (24h)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Pas de données",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 950,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7811d6080c5c4a90",
+        "type": "ui_group",
+        "name": "📊 Historique 24h",
+        "tab": "1943552c2213ef86",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": "history-group"
+    },
+    {
+        "id": "1943552c2213ef86",
+        "type": "ui_tab",
+        "name": "Station Météo",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
