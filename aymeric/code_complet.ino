@@ -27,10 +27,11 @@ int LED_jour_id = 27;
 int LED_nuit_id = 32;
 
 // Variable pour le calcul de la vitesse
-volatile int nb_tours = 0; // Variable globale
-unsigned long dernier_calcul = 0; 
+volatile unsigned int nbTours = 0;
+unsigned long dernierTemps = 0;
+float rayon_cm = 8.0;            // rayon en centimètres 
+float perimetre = 2 * 3.1416 * (rayon_cm / 100.0); // en mètres
 float vitesse_vent = 0;
-float diamètre_anémomètre = 0.08; // 8 cm en mètres
 
 // Variables pour l'activation du buzzer
 int alertes[3] = {0,0,0}; // Tempete, Canicule, Sécheresse  (Tableau pour détecter une nouvelle activation d'une alerte
@@ -69,8 +70,8 @@ BH1750 lightMeter;
 
 
 // Fonction "globale" qui va incrémenter le nb_tours à chaque fois que l'aimant passe (à tester)
-void IRAM_ATTR onAimantPasse() {
-  nb_tours++;
+void compterTour() {
+  nbTours++;
 }
 
 
@@ -188,7 +189,8 @@ void setup () {
   pinMode(LED_jour_id, OUTPUT);
   pinMode(LED_nuit_id, OUTPUT);
 
-
+  // Déclencher automatiquement une fonction (compterTour) dès qu’un événement particulier survient sur une broche
+  attachInterrupt(digitalPinToInterrupt(capteur_magnetique_id), compterTour, CHANGE);
 
   // Initialiser I2C
   Wire.begin();  // SDA, SCL
@@ -202,9 +204,6 @@ void setup () {
   dht.begin();
   // Initialisation du luxmetre
   lightMeter.begin(BH1750::CONTINUOUS_HIGH_RES_MODE);
-
-  // Pour le calcul de la vitesse du vent
-  attachInterrupt(digitalPinToInterrupt(capteur_magnetique_id), onAimantPasse, FALLING); // ou RISING selon ton montage
 }
 
 
@@ -213,25 +212,30 @@ void loop () {
   //-------------------- Partie "hardware" ----------------------//
 
   // Récupération des données "classiques"
-  humidité = dht.readHumidity();
-  température = dht.readTemperature();
-  luminosité = lightMeter.readLightLevel();
-  air_value = analogRead(qualité_A0_id);
+  float humidité = dht.readHumidity();
+  float température = dht.readTemperature();
+  float luminosité = lightMeter.readLightLevel();
+  int air_value = analogRead(qualité_A0_id);
   
   // Calcule de la vitesse du vent
   unsigned long now = millis(); 
 
-  if (now - dernier_calcul >= 5000) {
-    float tours_par_sec = nb_tours / 5.0;
-    float perimetre = diamètre_anémomètre * PI;
-    vitesse_vent = tours_par_sec * perimetre * 3.6; // m/s → km/h
+  if (now - dernierTemps >= 5000) { // toutes les 5 sec
+    noInterrupts();
+    unsigned int tours = nbTours;
+    nbTours = 0;
+    interrupts();
 
-    nb_tours = 0;
-    dernier_calcul = now;
+    float tps = tours; // tours par seconde
+    vitesse_vent = tps * perimetre * 3.6; // en km/h
 
-    if(vitesse_vent>300) {
-      vitesse_vent=0;
-    }
+    dernierTemps = now;
+
+    vitesse_vent = 0; // Ne fonctionne pas, donc on met à 0 pour éviter des "problèmes"
+  }
+
+  if(digitalRead(capteur_magnetique_id) == HIGH) {
+    Serial.println("hello, capteur magnétique activé");
   }
 
   // Activation LED jour/nuit
